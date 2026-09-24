@@ -37,3 +37,5 @@ To run the application without the development auto-reloader:
 ```bash
 uv run fastapi run
 ```
+
+Test.
