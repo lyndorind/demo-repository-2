@@ -1,11 +1,25 @@
 // For format details, see https://aka.ms/devcontainer.json. For config options, see the
-// README at: https://github.com/devcontainers/templates/tree/main/src/python
+// README at: https://github.com/devcontainers/templates/tree/main/src/ubuntu
 {
-	"name": "Python 3",
+	"name": "Ubuntu",
 	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
-	"image": "mcr.microsoft.com/devcontainers/python:3-3.14-trixie",
+	"image": "mcr.microsoft.com/devcontainers/base:resolute",
 	"features": {
 		"ghcr.io/devcontainers-extra/features/uv:1": {}
+	},
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"ms-python.python",
+				"ms-python.vscode-pylance",
+				"ms-python.debugpy",
+				"ms-python.vscode-python-envs",
+				"charliermarsh.ruff",
+				"EditorConfig.EditorConfig",
+				"GitHub.vscode-github-actions",
+				"GitHub.vscode-pull-request-github"
+			]
+		}
 	}
 
 	// Features to add to the dev container. More info: https://containers.dev/features.
@@ -15,7 +29,7 @@
 	// "forwardPorts": [],
 
 	// Use 'postCreateCommand' to run commands after the container is created.
-	// "postCreateCommand": "pip3 install --user -r requirements.txt",
+	// "postCreateCommand": "uname -a",
 
 	// Configure tool-specific properties.
 	// "customizations": {},
