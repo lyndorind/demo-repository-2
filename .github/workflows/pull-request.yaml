@@ -20,3 +20,13 @@ jobs:
 
       - name: Build Wheel Package
         run: uv build --wheel
+
+      # HashSum generate step
+      # ...
+
+      - name: Upload Wheel Package
+        uses: actions/upload-artifact@v4
+        with:
+          name: demo_repository_2
+          path: dist/demo_repository_2-*.whl
+          archive: false
