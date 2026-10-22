@@ -9,9 +9,14 @@ jobs:
   build:
     name: Build and Push Docker Image
     runs-on: ubuntu-latest
+    permissions:
+      id-token: write
     steps:
       - name: Checkout repository
         uses: actions/checkout@v7
+
+      - name: Install Cosign
+        uses: sigstore/cosign-installer@v4.1.0
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v4
@@ -32,6 +37,9 @@ jobs:
           tags: |
             ${{ github.repository }}:latest
             ${{ github.repository }}:${{ github.ref_name }}
+
+      - name: Sign the image
+        run: cosign sign --yes ${{ github.repository }}:${{ github.ref_name }}
 
       - name: Post text to a Slack channel
         uses: slackapi/slack-github-action@v4
