@@ -48,7 +48,7 @@ jobs:
         with:
           subject-name: ${{ github.repository }}:${{ github.ref_name }}
           subject-digest: ${{ steps.build-and-push.outputs.digest }}
-          push-to-registry: true
+          push-to-registry: false
 
       - name: Post text to a Slack channel
         uses: slackapi/slack-github-action@v4
