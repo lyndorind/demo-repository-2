@@ -1,7 +1,19 @@
+from collections.abc import AsyncIterator
+from contextlib import asynccontextmanager
+
 from fastapi import FastAPI
 
+from .tasks import init_db, router as tasks_router
 
-app = FastAPI(title="Demo Repository API")
+
+@asynccontextmanager
+async def lifespan(app: FastAPI) -> AsyncIterator[None]:
+    init_db()
+    yield
+
+
+app = FastAPI(title="Demo Repository API", lifespan=lifespan)
+app.include_router(tasks_router)
 
 
 @app.get("/echo/{message}")
